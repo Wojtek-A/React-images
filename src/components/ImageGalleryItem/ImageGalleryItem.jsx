@@ -8,7 +8,7 @@ export const ImageGalleryItem = props => {
       {images.map(image => (
         <li key={image.id} className={css.imageGalleryItem}>
           <img
-            clasName={css.imageGalleryItemImage}
+            className={css.imageGalleryItemImage}
             src={image.webformatURL}
             alt={image.tags}
             onClick={() => props.modal(true, image.largeImageURL, image.tags)}
