@@ -12,7 +12,7 @@ export const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState('');
   const [alt, setAlt] = useState('');
@@ -29,10 +29,13 @@ export const App = () => {
     try {
       const foundedImages = await imagesWithQuery(searchQuery, page);
       setSearchQuery(searchQuery);
-      if (page === undefined) {
+      if (page === 1) {
         setImages([...foundedImages]);
         setPage(2);
-      } else setImages([...images, ...foundedImages]);
+      } else {
+        setImages([...images, ...foundedImages]);
+        setPage(n => n + 1);
+      }
     } catch (error) {
       setError(error.message);
       console.log(error);
@@ -42,7 +45,6 @@ export const App = () => {
   };
 
   const loadMore = () => {
-    setPage(page + 1);
     handleImagesRequest(searchQuery, page);
   };
 

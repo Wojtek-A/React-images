@@ -11,7 +11,7 @@ export const SearchBar = props => {
 
   const handelSubimt = event => {
     event.preventDefault();
-    props.onSubmitSearch(searchQuery);
+    props.onSubmitSearch(searchQuery, 1);
   };
 
   const onKeyDown = event => {
